@@ -5,6 +5,8 @@ In folder 4.3_Mastering_Forth are some words created whilst working through exer
 
 The words in these individual .forth files will then be copied into the latest version of forth_words_v.forth to allow me to drag and drop a file with all my forth words into Swift Forth in one go. 
 
+The words in small array exercise have also been included in the forth_words files. These words were created whilst working through the ' small array exercise ' in the lab handout.
+
 From forth_words_v5 onwards I have now split the words into chunks arranged chronologically on when pieces of new code and worddds were created and added to the newest version of forth_words.
 
 All words that have been written have been written, the general structure of them has come from discussion with my lab partner. Words with my name to them were specifically written by me when we split up the workload to do different tasks. And words with my lab partner's name were done so by him (Tanjim) on his part to work on.
