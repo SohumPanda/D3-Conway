@@ -9,5 +9,5 @@ The words in small array exercise have also been included in the forth_words fil
 
 From forth_words_v5 onwards I have now split the words into chunks arranged chronologically on when pieces of new code and worddds were created and added to the newest version of forth_words.
 
-All words that have been written have been written, the general structure of them has come from discussion with my lab partner. Words with my name to them were specifically written by me when we split up the workload to do different tasks. And words with my lab partner's name were done so by him (Tanjim) on his part to work on.
+All words that have been written have been by me. The general structure of them has come from discussion with my lab partner. Words with my lab partner's name were done so by him (Tanjim) on his part to work on.
 
