@@ -30,8 +30,8 @@ REQUIRES RND                                         { imports rnd package autom
 
 
 : odd_even cr dup 2 mod 0= if                        { this uses IF THEN ELSE structure to check if the top of stack is odd or   } 
-	dup ." The number " . ." is even "               { even. The dup after if and else means the number is not taken off the top }
-	else                                             { of the stack }
+	dup ." The number " . ." is even "           { even. The dup after if and else means the number is not taken off the top }
+	else                                         { of the stack                                                              }
 	dup ." The number " . ." is odd " 
 	then cr ;                                    
 
@@ -61,8 +61,8 @@ REQUIRES RND                                         { imports rnd package autom
  
  
 : ASCII                                              {  Print the ASCII characters in blocks of 10.                              }
-	cr 128 0 do i                                    { 128 0 do i emit loops from 0 to 127. in between you have if then to check } 
-		 10 mod 0= if cr                             { if i is a multiple of 10                                                  }
+	cr 128 0 do i                                { 128 0 do i emit loops from 0 to 127. in between you have if then to check } 
+		 10 mod 0= if cr                     { if i is a multiple of 10                                                  }
 			then i emit 
 	loop ;
 
@@ -88,9 +88,9 @@ variable z                                           { creates a variable z     
 
 
 : make_array dup square dup                          { In console to use this word type z @ make_array ( where z is a number for } 
-	allocate drop dup rot 0 fill swap ;              { a z x z array. Needs the word square to be defined to work.               }
+	allocate drop dup rot 0 fill swap ;          { a z x z array. Needs the word square to be defined to work.               }
                                                      { Will leave the mem address, z on top of the stack to use again.           }
-													 { --------- mem, z                                                          }
+                                                     { z --------- mem, z                                                        }
 
 
 
@@ -101,7 +101,7 @@ variable z                                           { creates a variable z     
 : array_! 1- swap 1- 3 pick * + 3 pick swap + c! ;   { mem address, z, number to put in array, x (row number), y (column number) }
                                                      { need yo be on stack to use. This word puts a number in element [x,y] of   }
                                                      { an array at the mem address.                                              }
-													 { mem, z, no. to put in element, x, y ----- mem, z                          }
+		                                     { mem, z, no. to put in element, x, y ----- mem, z                          }
                                                   
 
 
@@ -112,7 +112,7 @@ variable z                                           { creates a variable z     
 
 
 : show_array dup                                     { Word to print array to console. Needs square defined.                     }
-    square 0 	                                     { mem, z -------- mem, z } 
+    square 0 	                                     { mem, z -------- mem, z                                                    } 
 		do 
 			dup i swap mod 0= if cr cr 
 			
@@ -125,9 +125,9 @@ variable z                                           { creates a variable z     
 	
 
 : linear_array dup square 0 do                       { Needs square to be defined to work.                                       }
-	i dup 3 pick swap + c!                           { Fills z x z array with numbers from 0 to n^2 -1 from top left to bottom   }
-	loop cr ;                                        { right.                                                                    }
-	                                                 { mem, z -------- mem, z }
+	i dup 3 pick swap + c!                       { Fills z x z array with numbers from 0 to n^2 -1 from top left to bottom   }
+	loop cr ;                                    { right.                                                                    }
+	                                             { mem, z -------- mem, z }
 
 
 
@@ -146,7 +146,7 @@ z @ make_array drop neighbours !
 
  
 : random_array_fill dup square 0 do                  { needs square to be defined                                                }  
-	i 9 rnd swap 3 pick swap + c! loop cr ;          { Fills z x z array with random numbers from 0 to 8                         }
+	i 9 rnd swap 3 pick swap + c! loop cr ;      { Fills z x z array with random numbers from 0 to 8                         }
                                                      { mem, z -------- mem, z                                                    }
 
 
@@ -161,13 +161,13 @@ drop drop                                            { each occupancy of a numbe
 do neighbour_occupancy_array i + c@ . loop ;       
 
 : reset_neighbour_occupancy_array cr
-	neighbour_occupancy_array 36 0 fill ;            { sets every byte in neighbour_occupancy_array to 0                         }
+	neighbour_occupancy_array 36 0 fill ;        { sets every byte in neighbour_occupancy_array to 0                         }
 
 
 
 reset_neighbour_occupancy_array                      { Must use reset_neighbour_occupancy_array word to set all elements in      } 
                                                      { neighbour_occupancy_array to 0 . To use this word must have the array     }
-													 { ' neighbours ' created before }
+		                                     { ' neighbours ' created before                                             }
 
 
 
@@ -175,9 +175,9 @@ reset_neighbour_occupancy_array                      { Must use reset_neighbour_
 
 
 : count_neighbour_array_occupancy z @ square 0 do                                        { counts number of cells with 0,1,2 - 8 }
-	neighbours @ i + c@                                                                  { neighbours, from out the neighours    }
-		case                                                                             { array and stores the amount in the    }    
-	 0 of neighbour_occupancy_array 0 + @ 1+ neighbour_occupancy_array 0 + ! endof       { neighbour_occupancy_array array       }
+	neighbours @ i + c@                                                              { neighbours, from out the neighours    }
+		case                                                                     { array and stores the amount in the    }    
+	 0 of neighbour_occupancy_array 0 + @ 1+ neighbour_occupancy_array 0 + ! endof   { neighbour_occupancy_array array       }
 	 1 of neighbour_occupancy_array 4 + @ 1+ neighbour_occupancy_array 4 + ! endof
 	 2 of neighbour_occupancy_array 8 + @ 1+ neighbour_occupancy_array 8 + ! endof
 	 3 of neighbour_occupancy_array 12 + @ 1+ neighbour_occupancy_array 12 + ! endof
@@ -193,10 +193,10 @@ reset_neighbour_occupancy_array                      { Must use reset_neighbour_
 
 
 : occupancy_of_neighbours cr                                             { must run count_neigbour_array_occupancy before this   } 
-	." Number of 0's is " neighbour_occupancy_array 0 + @ . cr           { and any of the print occupancies. This word prints    }  
-	." Number of 1's is " neighbour_occupancy_array 4 + @ . cr           { number of "" is "" in a nice readable format          }
-	." Number of 2's is " neighbour_occupancy_array 8 + @ . cr           { eg in a 10 x 10 array there may be 15 cells with 0    }
-	." Number of 3's is " neighbour_occupancy_array 12 + @ . cr          { neighbours. Would print number of "0's" is "11"       }
+	." Number of 0's is " neighbour_occupancy_array 0 + @ . cr       { and any of the print occupancies. This word prints    }  
+	." Number of 1's is " neighbour_occupancy_array 4 + @ . cr       { number of "" is "" in a nice readable format          }
+	." Number of 2's is " neighbour_occupancy_array 8 + @ . cr       { eg in a 10 x 10 array there may be 15 cells with 0    }
+	." Number of 3's is " neighbour_occupancy_array 12 + @ . cr      { neighbours. Would print number of "0's" is "11"       }
 	." Number of 4's is " neighbour_occupancy_array 16 + @ . cr  
 	." Number of 5's is " neighbour_occupancy_array 20 + @ . cr  
 	." Number of 6's is " neighbour_occupancy_array 24 + @ . cr  
@@ -207,17 +207,17 @@ reset_neighbour_occupancy_array                      { Must use reset_neighbour_
 
 
 
-: print_neighbour_occupancies cr 33 0 do             { This word just prints the actual amount of a number there is from 0 to 8  } 
-	neighbour_occupancy_array i + @ . cr 4 +loop ;   { to the console, without the string                                        }
+: print_neighbour_occupancies cr 33 0 do                             { This word just prints the actual amount of a number there } 
+	neighbour_occupancy_array i + @ . cr 4 +loop ;               { is from 0 to 8, to the console, without the string        }
 
 
 
 
 : percentage_occupancy cr z @ 
-	dup square neighbour_occupancy_array 0 + @ 100 * swap / ." The percent of 0's is " . ." % " cr  { gives occupancies of cells }
-	dup square neighbour_occupancy_array 4 + @ 100 * swap / ." The percent of 1's is " . ." % " cr  { in neighbours array as     }
-	dup square neighbour_occupancy_array 8 + @ 100 * swap / ." The percent of 2's is " . ." % " cr  { percentages                }
-	dup square neighbour_occupancy_array 12 + @ 100 * swap / ." The percent of 3's is " . ." % " cr  
+	dup square neighbour_occupancy_array 0 + @ 100 * swap / ." The percent of 0's is " . ." % " cr  { gives occupancies of  }
+	dup square neighbour_occupancy_array 4 + @ 100 * swap / ." The percent of 1's is " . ." % " cr  { elements in           }
+	dup square neighbour_occupancy_array 8 + @ 100 * swap / ." The percent of 2's is " . ." % " cr  { neighbours array as   }
+	dup square neighbour_occupancy_array 12 + @ 100 * swap / ." The percent of 3's is " . ." % " cr { percentages           } 
 	dup square neighbour_occupancy_array 16 + @ 100 * swap / ." The percent of 4's is " . ." % " cr  
 	dup square neighbour_occupancy_array 20 + @ 100 * swap / ." The percent of 5's is " . ." % " cr  
 	dup square neighbour_occupancy_array 24 + @ 100 * swap / ." The percent of 6's is " . ." % " cr  
@@ -230,9 +230,9 @@ reset_neighbour_occupancy_array                      { Must use reset_neighbour_
 
 
 : print_percentage_occupancies cr z @ 
-	dup square neighbour_occupancy_array 0 + @ 100 * swap / . cr         { This word just prints the actual percentage of the    } 
-	dup square neighbour_occupancy_array 4 + @ 100 * swap / . cr         { numbers from 0 to 8 in the neighbours array to the    }
-	dup square neighbour_occupancy_array 8 + @ 100 * swap / . cr         { console, without the string                           }
+	dup square neighbour_occupancy_array 0 + @ 100 * swap / . cr    { This word just prints the actual percentage of the    } 
+	dup square neighbour_occupancy_array 4 + @ 100 * swap / . cr    { numbers from 0 to 8 in the neighbours array to the    }
+	dup square neighbour_occupancy_array 8 + @ 100 * swap / . cr    { console, without the string                           }
 	dup square neighbour_occupancy_array 12 + @ 100 * swap / . cr  
 	dup square neighbour_occupancy_array 16 + @ 100 * swap / . cr  
 	dup square neighbour_occupancy_array 20 + @ 100 * swap / . cr  
@@ -250,8 +250,8 @@ reset_neighbour_occupancy_array                      { Must use reset_neighbour_
 
 
 
-  : random_array_fill_0or1 dup square 0 do           { Fills an array with random values from 0 to 1. Needs square defined       }
-	i 2 rnd swap 3 pick swap + c! loop cr ;          { mem, z -------- mem, z                                                    }
+  : random_array_fill_0or1 dup square 0 do           { Fills an array with random values from 0 to 1. Needs square defined      }
+	i 2 rnd swap 3 pick swap + c! loop cr ;      { mem, z -------- mem, z                                                   }
 
 
 
@@ -259,10 +259,10 @@ reset_neighbour_occupancy_array                      { Must use reset_neighbour_
 
  
 
-: conways_rules  case                                { this word takes the number of neighbours off the stack and will return     }                             { here 0 means the cell dies }		
-	0 of 0 endof                                     { 0,1,2 on the stack in its place. 3 neighbours means the cell will be alive }
-	1 of 0 endof                                     { always. 2 neighbours means the state of the cell is unchanged  always      } 
-	2 of 2 endof                                     { any other val of neighbours means cell will die                            }
+: conways_rules  case                              { this word takes the number of neighbours off the stack and will return     }                           		
+	0 of 0 endof                               { 0,1,2 on the stack in its place. 3 neighbours means the cell will be alive }
+	1 of 0 endof                               { always. 2 neighbours means the state of the cell is unchanged  always      } 
+	2 of 2 endof                               { any other val of neighbours means cell will die                            }
 	3 of 1 endof                                       
 	4 of 0 endof
 	5 of 0 endof 
@@ -274,10 +274,10 @@ reset_neighbour_occupancy_array                      { Must use reset_neighbour_
 
 
 
-: apply_conway_rule conways_rules                    { takes 0, or 1 ( representing if cell dead or alive), number of neighbours  } 
-	case                                             { and returns on the stack the value 0 or 1 of if the cell is dead or alive  }
-		0 of 0 endof                                 { in the next generation. Needs the word conways_rules defined               }
-		1 of 1 endof                                 { state of cell (0 or 1), neighbours --- state of cell in next gen (0 or 1 ) }
+: apply_conway_rule conways_rules                  { takes 0, or 1 ( representing if cell dead or alive), number of neighbours  } 
+	case                                       { and returns on the stack the value 0 or 1 of if the cell is dead or alive  }
+		0 of 0 endof                       { in the next generation. Needs the word conways_rules defined               }
+		1 of 1 endof                       { state of cell (0 or 1), neighbours --- state of cell in next gen (0 or 1 ) }
 		2 of dup endof 
 	endcase nip ; 
 	
@@ -310,10 +310,10 @@ z @ make_array drop Life_Array_1 !
 
 
 
-: toprow cr z @ 0 do i z @ /                                            { Word to loop over top row of life_array_1 and identify  }
-	0= if i                                                             { the corner elements. Prints no. stored in each element  } 
-			case                                                        { and if its in the top left or right corner or otherwise }
-			0 of Life_Array_1 @ i + c@ . ." in top left " cr endof      { prints that it is in the top row                        }
+: toprow cr z @ 0 do i z @ /                                                         { Word to loop over top row of life_array_1 and identify  }
+	0= if i                                                                      { the corner elements. Prints no. stored in each element  } 
+			case                                                         { and if its in the top left or right corner or otherwise }
+			0 of Life_Array_1 @ i + c@ . ." in top left " cr endof       { prints that it is in the top row                        }
 			z-1 @ of Life_Array_1 @ i + c@ . ." in top right " cr endof 
 			Life_Array_1 @ i + c@ . ." in the top row " cr
 			endcase 
@@ -324,8 +324,8 @@ z @ make_array drop Life_Array_1 !
 
 
 
-: bottomrow cr z @ square z(z-1) do i z @ /                                   { Word to loop over the botto row of life_array_1.  } 
-	z-1 @ = if i                                                              { Prints no. stored in each element and if its in   }                            
+: bottomrow cr z @ square z(z-1) do i z @ /                                               { Word to loop over the botto row of life_array_1.  } 
+	z-1 @ = if i                                                                      { Prints no. stored in each element and if its in   }                            
 			case                                                              { the bottom left or right corner or otherwise in   }
 			z(z-1) @ of Life_Array_1 @ i + c@ . ." in bottom left " cr endof  { bottom row                                        }
 			z^2-1 @ of Life_Array_1 @ i + c@ . ." in bottom right " cr endof 
@@ -338,8 +338,8 @@ z @ make_array drop Life_Array_1 !
 
 
 
-: middle cr z(z-1) @ z @ do i z @ mod dup                                                       { Word to loop from second to     }
-	z @ <= if                                                                                   { end of penultimate row to       }
+: middle cr z(z-1) @ z @ do i z @ mod dup                                                                   { Word to loop from second to     }
+	z @ <= if                                                                                           { end of penultimate row to       }
 			case                                                                                { identify if an element is in    }
 			0 of Life_Array_1 @ i + c@ . ." in left edge (not corners though) " cr endof        { the left or right edge or       }
 			z-1 @ of Life_Array_1 @ i + c@ . ." in right edge (not corners though) " cr endof   { within the edges of             }
@@ -352,32 +352,32 @@ z @ make_array drop Life_Array_1 !
 
 
 
-: element_pos_check cr toprow middle bottomrow ;     { Word to print all elements in life_array_1 and their positions             }
+: element_pos_check cr toprow middle bottomrow ;                { Word to print all elements in life_array_1 and their positions              }
 
 
 
 
  
 
- : toprow_neighbours z @ 0 do i z @ /                { combines toprow with if then and case endcase to calculate the number of   }
-	0= if i                                          { neighbours for a cell in the top row of life_array_1 and put that          }
+ : toprow_neighbours z @ 0 do i z @ /                            { combines toprow with if then and case endcase to calculate the number of   }
+	0= if i                                                  { neighbours for a cell in the top row of life_array_1 and put that          }
 			case                                     { number into the neighbours array                                           }
 			0 of Life_Array_1 @ i 1+ + c@ 
 				 Life_Array_1 @ i z @ + + c@ 
 				 Life_Array_1 @ i z @ + 1+ + c@ + + 
-				 neighbours @ i + c! endof           { puts in amount of neighbours for top left                                  } 
+				 neighbours @ i + c! endof       { puts in amount of neighbours for top left                                  } 
 			
 			z-1 @ of Life_Array_1 @ i 1- + c@
                    Life_Array_1 @ i z @ + + c@ 
 				   Life_Array_1 @ i z @ + 1- + c@ + + 
-		           neighbours @ i + c! endof         { puts in amount of neighbours for top right                                 } 
+		           neighbours @ i + c! endof             { puts in amount of neighbours for top right                                 } 
 			
 			Life_Array_1 @ i 1- + c@
             Life_Array_1 @ i 1+ + c@
 		    Life_Array_1 @ i z @ + 1- + c@
 		    Life_Array_1 @ i z @ + + c@ 
 		    Life_Array_1 @ i z @ + 1+ + c@ + + + + 
-		    neighbours @ i + c!                      { puts in amount of neighbours for all non corner elements in top row        } 
+		    neighbours @ i + c!                          { puts in amount of neighbours for all non corner elements in top row        } 
 			
 			endcase 
 	    then  
@@ -387,7 +387,7 @@ z @ make_array drop Life_Array_1 !
 
 
 
-: bottomrow_neighbours z @ square z(z-1) @ do        { Does the same as toprow_neighbours but for bottom row                      }
+: bottomrow_neighbours z @ square z(z-1) @ do                    { Does the same as toprow_neighbours but for bottom row                      }
 	i z @ / z-1 @ = 
 		if i                                                                                         
 			case 
@@ -416,7 +416,7 @@ z @ make_array drop Life_Array_1 !
 
 
 
-: middle_neighbours z(z-1) @ z @ do i z @ mod dup    { Does same as toprow_neighbours but for second to end of penultimate row    }                      
+: middle_neighbours z(z-1) @ z @ do i z @ mod dup                { Does same as toprow_neighbours but for second to end of penultimate row     }                      
 	z @ <= if 
 			case
 			0 of Life_Array_1 @ i z @ - + c@ 
@@ -424,7 +424,7 @@ z @ make_array drop Life_Array_1 !
 		         Life_Array_1 @ i 1+ + c@
 		         Life_Array_1 @ i z @ + + c@
 		         Life_Array_1 @ i z @ + 1+ + c@ + + + + 
-		         neighbours @ i + c! endof           { left edge but not corners } 
+		         neighbours @ i + c! endof               { left edge but not corners } 
 			
 			z-1 @ of Life_Array_1 @ i z @ - 1- + c@
 			       Life_Array_1 @ i z @ - + c@
@@ -451,7 +451,7 @@ z @ make_array drop Life_Array_1 !
 	
 	
 	
-: update_neighbours                                  { updates entire neighbours array in one go with the number of alive         }
+: update_neighbours                                      { updates entire neighbours array in one go with the number of alive         }
 	toprow_neighbours                                { of every element in life_array_1                                           }
 	bottomrow_neighbours 
 	middle_neighbours ;
@@ -469,7 +469,7 @@ z @ make_array drop Life_Array_2 !                   { the state of the entire n
  
 
 : next_gen z @ square 0 do                           { Word to apply conways rules to life_array_1 and puts the next generation   }
-	Life_Array_1 @ i + c@                            { into life_array_2                                                          }
+	Life_Array_1 @ i + c@                        { into life_array_2                                                          }
 	neighbours @ i + c@ 
 	apply_conway_rule 
 	Life_Array_2 @ i + c! 
@@ -506,7 +506,7 @@ reset_alive_2
 
 
 : count_alive_1 z @ square 0 do                      { Word to count no alive cells in Life_Array_1 and store that number in      } 
-	Life_Array_1 @ i + c@                            { alive_1                                                                    }
+	Life_Array_1 @ i + c@                        { alive_1                                                                    }
 		case 
 		1 of alive_1 0 + @ 1+ alive_1 0 + !  endof
 		endcase
@@ -517,7 +517,7 @@ reset_alive_2
 	 
 	 
 : count_alive_2 z @ square 0 do                      { Word to count no alive cells in Life_Array_1 and store that number in      }
-	Life_Array_2 @ i + c@                            { alive_2                                                                    }
+	Life_Array_2 @ i + c@                        { alive_2                                                                    }
 		case 
 		1 of alive_2 0 + @ 1+ alive_2 0 + !  endof
 		endcase
@@ -526,9 +526,9 @@ reset_alive_2
                                                      { to print the number of alive cells in the Life_Array_1 or Life_Array_2     }
                                                      { first run :count_alive_1 or 2 and then                                     }
                                                      { alive_1 or 2 0 + @ } { ----------- will print no alive cells to stack      } 
-													 { We can use this to check the if the number of alive cells changes from one }
+                                                     { We can use this to check the if the number of alive cells changes from one }
                                                      { gen to another s a form of checking if steady state is reached. To do this }
-													 { alive_1 and alive_2 mmust be reset back to zero after each loop            } 
+		                                     { alive_1 and alive_2 mmust be reset back to zero after each loop            } 
 
 
 
@@ -542,7 +542,7 @@ z @ 2 * make_array drop Life_Array32 !
  
 
 : 8to32 z @ square 0 do                              { Word to convert life_array_1 into a 32 bit array from an 8 bit array       }                     
-	life_array_1 @ i + c@                            { which is then stored at the variable life_array32                          }
+	life_array_1 @ i + c@                        { which is then stored at the variable life_array32                          }
 	Life_Array32 @ i cells + ! 
 	loop ; 
 	
@@ -551,7 +551,7 @@ z @ 2 * make_array drop Life_Array32 !
 	
  	
 : show_array32 dup                                   { Word to show a 32 bit array in the console                                 }
-	square 0 	                                     { mem, z ------- mem, z                                                      }
+	square 0 	                             { mem, z ------- mem, z                                                      }
 		do 
 			dup i swap mod 0= if cr cr 
 			
@@ -564,36 +564,36 @@ z @ 2 * make_array drop Life_Array32 !
 
 
 
-: update_life                                        { Word to put everything togethere and update life from one gen to next      }
+: update_life                                            { Word to put everything togethere and update life from one gen to next      }
 	8to32                                            { Firstly initialise life_array_1 with some pattern, random or specific      }
 	update_neighbours                                { life_array_2, neighbours and life_array32 arrays will need to already made }
 	next_gen                                         { These 3 arrays are initialised with all 0's anyways to begin with          }
 	life_array_2 @ life_array_1 @ z @ square move    { Then convert life_array_1 to 32 bit using 8to32 and store in life_array32  }
-;                                                    { Then use update_neighbours to update neighbour array                       }
-                                                     { Then use next gen to create the next generation in life_array_2            }
-                                                     { Use move to move net gen into life_array_1, ready to be acted on again     }
-                                                     { to continuously loop and keep updating each generation of life             }
-													 { Can add other things in this word such as checks and outputting data etc   }
+;                                                        { Then use update_neighbours to update neighbour array                       }
+                                                         { Then use next gen to create the next generation in life_array_2            }
+                                                         { Use move to move net gen into life_array_1, ready to be acted on again     }
+                                                         { to continuously loop and keep updating each generation of life             }
+							 { Can add other things in this word such as checks and outputting data etc   }
 
 
 
 
 
-: reset_life_array_1 cr                              { Word to reset life_array_1 to all 0's                                      }
+: reset_life_array_1 cr                                  { Word to reset life_array_1 to all 0's                                      }
   life_array_1 @ z @ square 0 fill ;
 
 
 
 
 
-: reset_life_array_2 cr                              { Word to reset life_array_1 to all 0's                                      }
+: reset_life_array_2 cr                                  { Word to reset life_array_1 to all 0's                                      }
   life_array_2 @ z @ square 0 fill ;
 
 
  
 
 
-: reset_life_array32 cr                              { Word to reset life_array32 to all 0's                                      }
+: reset_life_array32 cr                                  { Word to reset life_array32 to all 0's                                      }
  life_array32 @ z @ square cells 0 fill ;
 
 
@@ -619,10 +619,10 @@ variable glider_y
 
 : import_glider
   glider_y !
-  glider_x !														        { saves x,y into the variables   }
+  glider_x !										{ saves x,y into the variables   }
   life_array_1 @ z @ 1 glider_x @ glider_y @ 2 + array_! drop drop			{ changes values in life_array_1 }
-  life_array_1 @ z @ 1 glider_x @ 1 + glider_y @ array_! drop drop			{ so a glider appears in the top }
-  life_array_1 @ z @ 1 glider_x @ 1 + glider_y @ 2 + array_! drop drop 		{ left corner                   }
+  life_array_1 @ z @ 1 glider_x @ 1 + glider_y @ array_! drop drop			{ so a glider appears at [x,y]   }
+  life_array_1 @ z @ 1 glider_x @ 1 + glider_y @ 2 + array_! drop drop 		        
   life_array_1 @ z @ 1 glider_x @ 2 + glider_y @ 1 + array_! drop drop 
   life_array_1 @ z @ 1 glider_x @ 2 + glider_y @ 2 + array_! drop drop 	     
 ;
@@ -636,8 +636,8 @@ variable glider_y
 									  
 									  
 { life wasn't working using display squares files given. Changed all words to use arrays stored in variables rather than constants. }
-{ Additionally n kept not being unique and not properly updating when dragging in my forth_words files after changing n each time. }
-{ As a result replaced n with the letter z and madde all values related to z stored as variables instead of constants now. } 
+{ Additionally n kept not being unique and not properly updating when dragging in my forth_words files after changing n each time.  }
+{ As a result replaced n with the letter z and madde all values related to z stored as variables instead of constants now.          } 
 
 
 
