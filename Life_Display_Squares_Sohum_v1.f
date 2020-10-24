@@ -182,9 +182,9 @@ REQUIRES RND
 
 
 : BLACK-BRUSH   ( -- hbrush )  { Sets brush color to full black hue }
-   000 16 LSHIFT
-   000  8 LSHIFT OR
-   000           OR 
+   050 16 LSHIFT
+   050  8 LSHIFT OR
+   050           OR 
    CreateSolidBrush ;
 
 
