@@ -1,6 +1,8 @@
 # D3-Conway
 Forth code to run Conway's Game of Life
 
+
+
 As of right now you can see the code working.
 Open swiftforth
 drag and drop in forth_words_v7 console.
@@ -17,6 +19,12 @@ go
 
 into the console and hit enter.
 You should see a purple glider form in the top of a 20 x 20 life grid and move
+
+
+
+
+
+
 
 
 
