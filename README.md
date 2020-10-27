@@ -5,7 +5,7 @@ Forth code to run Conway's Game of Life
 
 As of right now you can see the code working.
 Open swiftforth
-drag and drop in forth_words_v7 console.
+drag and drop in forth_words_v8 console.
 Type in 
 
 1 1 import_glider 
