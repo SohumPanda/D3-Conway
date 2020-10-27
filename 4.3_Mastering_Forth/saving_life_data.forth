@@ -1,3 +1,6 @@
+{ Written by Sohum Panda }
+{ 27/10/20               }
+
 
 variable measurements_file_id  { creates a variable called test_file_id to store the numerical file id value } 
 
@@ -6,7 +9,7 @@ s" C:\Users\sohum\Documents\Uni\Year3\Labs\D3_Conway\Measurements\measurements_f
 
 
 : save_measurements                                                    { saves measurements to a csv file     }
-  increment_generations                                                { run the measurement words         }
+  increment_generations                                                { run the measurement words            }
   count_alive_1 count_alive_2 
   calculate_diff_array
   count_born count_died
@@ -19,7 +22,7 @@ s" C:\Users\sohum\Documents\Uni\Year3\Labs\D3_Conway\Measurements\measurements_f
     no_Born @ (.) measurements_file_id @ write-file drop                    { add cells born in current gen      }
     s" , " measurements_file_id @ write-file drop                           { adds comma and space               }
     no_Died @ (.) measurements_file_id @ write-line drop                    { add cells that died since prev gen }
-  0 no_Born !                                                          { resets the born/died variables     }
+  0 no_Born !                                                               { resets the born/died variables     }
   0 no_Died !
 ;
 
