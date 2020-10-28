@@ -658,7 +658,13 @@ variable no_Died                                  { Creates a variable to store 
 
 
 { This code was written 27/10/20 }
-{ lines 664-740 }
+{ lines 664-746 }
+
+
+
+variable life_array_3                            { Creates a variable called life_array_3                                      }
+
+z @ make_array drop life_array_3 !               { Makes life_array_3 fills it with 0's                                        } 
 
 
 
@@ -687,7 +693,8 @@ variable no_Died                                  { Creates a variable to store 
 	loop
 	nip nip														{ remove the addresses, only True / }
 	;															{ False left on stack 				}
-
+                                                                { mem1, mem2 ------- True/False     }
+																
 
 { -----------------------End of by Tanjim, adapted by me------------------------ }
 
@@ -695,10 +702,39 @@ variable no_Died                                  { Creates a variable to store 
 
 
 
-variable generations           { creates a variable called generations }
+variable generations                         { creates a variable called generations }
 0 generations !
 
-: increment_generations 1+ generations ! ;   { word to add 1 to generations variable after each generation   }    
+: increment_generations                      { word to add 1 to generations variable after each generation   }
+generations @ 1+ generations ! ;   
+ 											 
+
+
+
+
+variable static                              { creates a variable called static to hold the value -1 or 0    } 
+                                             { standing for true or false for if gen x is same as gen x-1    }
+											 
+: static_check                               { checks if gen x (stored in life_array_2) is same as gen x-1   }
+ life_array_2 @ life_array_1 @               { (stored in life_array_1) and stores true or false value in    }
+ compare_arrays                              { static variable. REMEMBER if gen x is the same as gen x-1,    }
+ static !                                    { static equilibrium was actually achieved at gen x-1           }
+;
+
+
+
+
+variable 2dynamic                            { creates a variable called 2dynamic to hold -1 or 0 if gen x   }
+                                             { is the same as gen x-2 and we have a dynamic equilibrium with }
+											 { structures that have a max period of oscillation of 2         }
+											 
+: 2dynamic_check                             { checks if gen x (stored in life_array_2) is same as gen x-2   }   						 
+ life_array_2 @ life_array_3 @               { (stored in life_array_3) and stores true or false value in    }
+ compare_arrays                              { 2dynamic variable. REMEMBER if gen x same as gen x-2 then     } 
+ 2dynamic !  								 { dynamic equilibrium was actually achieved at gen x-2          }			 
+;
+
+
 
 
 
@@ -710,48 +746,66 @@ variable measurements_file_id  { creates a variable called test_file_id to store
  ;
 
 
-: save_measurements                                                    { saves measurements to a csv file     }
-  increment_generations                                                { run the measurement words            }
-  count_alive_1 count_alive_2 
-  calculate_diff_array
-  count_born count_died
-    generations @ (.) measurements_file_id @ write-file drop                { add generation number              }
-    s" , " measurements_file_id @ write-file drop                           { adds comma and space               }
-    alive_1 @ (.) measurements_file_id @ write-file drop                    { add cells alive in prev gen        }
-    s" , " measurements_file_id @ write-file drop                           { adds comma and space               }
-    alive_2 @ (.) measurements_file_id @ write-file drop                    { add cells alive in current gen     }
-    s" , " measurements_file_id @ write-file drop                           { adds comma and space               }
-    no_Born @ (.) measurements_file_id @ write-file drop                    { add cells born in current gen      }
-    s" , " measurements_file_id @ write-file drop                           { adds comma and space               }
-    no_Died @ (.) measurements_file_id @ write-line drop                    { add cells that died since prev gen }
-  0 no_Born !                                                               { resets the born/died variables     }
-  0 no_Died !
-;
-
 
 { run the word make_measurements_file in the console to create measurements_file.csv at the location } 
-{ Import all words into console and then import starting structure into life_array_1.                }
+{ Import all words into console and then import starting structure into life_array_2.                }
 { make_measurements_file                                                                             }
 { save_measurements                                                                                  }
 
-{ We have to do this once outside the loop to save the measurements of the first starting generation }
-{ as running the loop will update to the second generation so th first et of measurements will be    }
-{ for gen 2. EG no_Born and Died will be how many cells were born and when gen 2 was crated          } 
+
+
+
+
+: save_measurements                                                    { saves measurements to a csv file     }
+  increment_generations                                                { run the measurement words            }
+  count_alive_2 
+  calculate_diff_array
+  count_born count_died
+  static_check 2dynamic_check 
+  
+    generations @ (.) measurements_file_id @ write-file drop                { add generation number               }
+    s" , " measurements_file_id @ write-file drop                           { adds comma and space                }
+	
+   { alive_1 @ (.) measurements_file_id @ write-file drop }                 { add cells alive in prev gen         }
+   { s" , " measurements_file_id @ write-file drop }                        { adds comma and space                }
+    
+    alive_2 @ (.) measurements_file_id @ write-file drop                    { add cells alive in current gen      }
+    s" , " measurements_file_id @ write-file drop                           { adds comma and space                }
+   
+   no_Born @ (.) measurements_file_id @ write-file drop                     { add cells born in current gen       }
+    s" , " measurements_file_id @ write-file drop                           { adds comma and space                }
+    no_Died @ (.) measurements_file_id @ write-file drop                    { add cells that died since prev gen  }
+    s" , " measurements_file_id @ write-file drop                           { adds comma and space                }
+    
+	static @ (.) measurements_file_id @ write-file drop                     { add if current gen same as prev gen }	
+    s" , " measurements_file_id @ write-file drop                           { adds comma and space                }
+    2dynamic @ (.) measurements_file_id @ write-line drop                   { add if current gen same as gen -2   }   
+ 
+;
 
 
 
 
 
-: update_life                                        { Word to put everything togethere and update life from one gen to next      }
-	8to32                                            { Firstly initialise life_array_1 with some pattern, random or specific      }
-	update_neighbours                                { life_array_2, neighbours and life_array32 arrays will need to already made }
-	next_gen 	                                     { These 3 arrays are initialised with all 0's anyways to begin with          }
-   { edges_life2_0 }
-	save_measurements
-	life_array_2 @ life_array_1 @ z @ square move    { Then convert life_array_1 to 32 bit using 8to32 and store in life_array32  }
-;                                                    { Then use update_neighbours to update neighbour array                       }
-                                                     { Then use next gen to create the next generation in life_array_2            }
-                                                     { Use move to move net gen into life_array_1, ready to be acted on again     }
+
+
+{ Word to put everything togethere and update life from one gen to next      }
+{ Firstly initialise life_array_2 with some pattern, random or specific      }
+{ life_array_1, life_array_3, neighbours life_array32 arrays will need to be }
+{ already made }
+
+{ START WITH PUTTING SEED PATTERN IN LIFE_ARRAY_2 }
+
+: update_life                                        
+	save_measurements                                { At this point gen x-1 in life_array_1.  gen x in life_array_2.             }
+	                                                 { gen x-2 in life_array_3. Measurements are made and saved                   }													 
+	life_array_1 @ life_array_3 @ z @ square move    { moves gen in life_array_1 (x-1) to life_array_3                            }
+	life_array_2 @ life_array_1 @ z @ square move    { moves gen in life_array_2 (x) to life_array_1                              }   
+	8to32                                            { converts life_array_1 from 8 to 32 bit, stores in life_array32             }                            
+	update_neighbours                                { Update_neighbours updates neighbour array                                  } 
+	next_gen 	                                     { Then use next gen to create the next generation (x+1) in life_array_2      }   
+;                                                     
+                                                     { Use move to move next gen into life_array_1, ready to be acted on again    }
                                                      { to continuously loop and keep updating each generation of life             }
 													 { Can add other things in this word such as checks and outputting data etc   }
 
@@ -780,6 +834,13 @@ variable measurements_file_id  { creates a variable called test_file_id to store
 
 
 
+: reset_life_array_3 cr                              { Word to reset life_array_1 to all 0's                                      }
+  life_array_3 @ z @ square 0 fill ;
+
+
+
+
+
 { -----------------------Made by Tanjim, adapted by me------------------------ }
 
 { Made by: Tanjim Chowdhury
@@ -800,11 +861,11 @@ variable glider_y
 : import_glider
   glider_y !
   glider_x !														        { saves x,y into the variables   }
-  life_array_1 @ z @ 1 glider_x @ glider_y @ 2 + array_! drop drop			{ changes values in life_array_1 }
-  life_array_1 @ z @ 1 glider_x @ 1 + glider_y @ array_! drop drop			{ so a glider appears at [x,y]   }
-  life_array_1 @ z @ 1 glider_x @ 1 + glider_y @ 2 + array_! drop drop 		
-  life_array_1 @ z @ 1 glider_x @ 2 + glider_y @ 1 + array_! drop drop 
-  life_array_1 @ z @ 1 glider_x @ 2 + glider_y @ 2 + array_! drop drop 	     
+  life_array_2 @ z @ 1 glider_x @ glider_y @ 2 + array_! drop drop			{ changes values in life_array_1 }
+  life_array_2 @ z @ 1 glider_x @ 1 + glider_y @ array_! drop drop			{ so a glider appears at [x,y]   }
+  life_array_2 @ z @ 1 glider_x @ 1 + glider_y @ 2 + array_! drop drop 		
+  life_array_2 @ z @ 1 glider_x @ 2 + glider_y @ 1 + array_! drop drop 
+  life_array_2 @ z @ 1 glider_x @ 2 + glider_y @ 2 + array_! drop drop 	     
 ;
 
 
@@ -852,6 +913,11 @@ variable glider_y
 { call save_measurements once outisde of the life loop to save the statistics of the }
 { first generation. Which is the seed we put in } 
 
+{ created another array life_array_3, to store a generation of life in 2 generations previous to }
+{ current generation. Most structures end with dynamic equilibrium period 2 oscillators and      }
+{ steady state structures. By chacking gen x with gen x + 2 we can create a condition if they    } 
+{ are the same then we know simulation has reached dynamic equilibrium                           }
+
 
 
 
@@ -859,7 +925,7 @@ variable glider_y
 : import_line                                                        { adds a horizontal line at x,y        }
     rot 0                                                            { a is the length of the line          }
       do                                                             { loop from 0 to a                     }
-        life_array_1 @ z @ 1 4 pick 4 pick i +                       { writes the 1 into array              }   
+        life_array_2 @ z @ 1 4 pick 4 pick i +                       { writes the 1 into array              }   
         array_! drop drop                                                      
     loop drop drop                                                   { a, x, y ------ }    
 ;
@@ -921,4 +987,31 @@ variable glider_y
 
 
 
+                                      { -------- 28/10/20 -------- }
+									  
+									  
+
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
 
