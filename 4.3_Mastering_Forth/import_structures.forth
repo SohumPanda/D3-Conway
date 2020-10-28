@@ -16,11 +16,11 @@ variable glider_y
 : import_glider
   glider_y !
   glider_x !														    { saves x,y into the variables  }
-  life_array_1 n 1 glider_x @ glider_y @ 2 + array_! drop drop			{ changes values in life_array_1}
-  life_array_1 n 1 glider_x @ 1 + glider_y @ array_! drop drop			{ so a glider appears in the top}
-  life_array_1 n 1 glider_x @ 1 + glider_y @ 2 + array_! drop drop 		{ left corner                   }
-  life_array_1 n 1 glider_x @ 2 + glider_y @ 1 + array_! drop drop 
-  life_array_1 n 1 glider_x @ 2 + glider_y @ 2 + array_! drop drop 	
+  life_array_2 n 1 glider_x @ glider_y @ 2 + array_! drop drop			{ changes values in life_array_1}
+  life_array_2 n 1 glider_x @ 1 + glider_y @ array_! drop drop			{ so a glider appears in the top}
+  life_array_2 n 1 glider_x @ 1 + glider_y @ 2 + array_! drop drop 		{ left corner                   }
+  life_array_2 n 1 glider_x @ 2 + glider_y @ 1 + array_! drop drop 
+  life_array_2 n 1 glider_x @ 2 + glider_y @ 2 + array_! drop drop 	
 ;
 
 
@@ -47,7 +47,7 @@ variable glider_y
 : import_line                                                        { adds a horizontal line at x,y        }
     rot 0                                                            { a is the length of the line          }
       do                                                             { loop from 0 to a                     }
-        life_array_1 @ z @ 1 4 pick 4 pick i +                       { writes the 1 into array              }   
+        life_array_2 @ z @ 1 4 pick 4 pick i +                       { writes the 1 into array              }   
         array_! drop drop                                                      
     loop drop drop                                                   { a, x, y ------ }    
 ;
