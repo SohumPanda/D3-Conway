@@ -805,11 +805,7 @@ variable measurements_file_id  { creates a variable called test_file_id to store
 	update_neighbours                                { Update_neighbours updates neighbour array                                  } 
 	next_gen 	                                     { Then use next gen to create the next generation (x+1) in life_array_2      }   
 ;                                                     
-                                                     { Use move to move next gen into life_array_1, ready to be acted on again    }
-                                                     { to continuously loop and keep updating each generation of life             }
-													 { Can add other things in this word such as checks and outputting data etc   }
-
-
+                                          
 
 
 
