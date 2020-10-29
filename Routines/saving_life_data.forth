@@ -47,3 +47,9 @@ variable measurements_file_id  { creates a variable called test_file_id to store
  
 ;
 
+
+
+: close_measurements                                      { Close the file pointed to by the file  }
+  measurements_file_id @                                  { handle.                                }
+  close-file drop
+; 
