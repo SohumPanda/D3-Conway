@@ -1,1 +1,5 @@
-Instructions for running Forth_Words_FINAL.forth with Life_Display_Squares_Sohum.f graphical display file in SwiftForth 
+Instructions for running LIFE_FINAL.forth with Life_Display_Squares_Sohum.f graphical display file in SwiftForth 
+
+Drag LIFE_FINAL into SwiftForth. The grid of life will be of size 100 x 100. To change this go to line 86 in LIFE_FINAL.forth and change 100 z ! to a different number.
+You will have to re-import ( drag in ) LIFE_FINAL to update all words and variables that are calculated off of this value. 
+
