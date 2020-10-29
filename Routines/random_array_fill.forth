@@ -23,6 +23,6 @@ variable percentage                                  { creates a variable for th
 
 
   : random_array_fill_0or1 dup square 0 do           { Fills an array with random values from 0 to 1. Needs square defined       }
-	i 2 rnd 
+	i 
 	100 rnd 1 + percentage @ <= if 1 else 0 then
 	swap 3 pick swap + c! loop cr ;                  { mem, z -------- mem, z                                                    }
