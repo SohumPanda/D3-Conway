@@ -15,16 +15,13 @@ variable glider_y
 
 : import_glider
   glider_y !
-  glider_x !														                              { saves x,y into the variables  }
-  life_array_2 n 1 glider_x @ glider_y @ 2 + array_! drop drop			  { changes values in life_array_1}
-  life_array_2 n 1 glider_x @ 1 + glider_y @ array_! drop drop		    { so a glider appears in the top}
-  life_array_2 n 1 glider_x @ 1 + glider_y @ 2 + array_! drop drop 		{ left corner                   }
-  life_array_2 n 1 glider_x @ 2 + glider_y @ 1 + array_! drop drop 
-  life_array_2 n 1 glider_x @ 2 + glider_y @ 2 + array_! drop drop 	
+  glider_x !														        { saves x,y into the variables   }
+  life_array_2 @ z @ 1 glider_x @ glider_y @ 2 + array_! drop drop			{ changes values in life_array_2 }
+  life_array_2 @ z @ 1 glider_x @ 1 + glider_y @ array_! drop drop			{ so a glider appears at [x,y]   }
+  life_array_2 @ z @ 1 glider_x @ 1 + glider_y @ 2 + array_! drop drop 		
+  life_array_2 @ z @ 1 glider_x @ 2 + glider_y @ 1 + array_! drop drop 
+  life_array_2 @ z @ 1 glider_x @ 2 + glider_y @ 2 + array_! drop drop 	     
 ;
-
-
-
 
 
 
