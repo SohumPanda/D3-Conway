@@ -3,3 +3,11 @@ Instructions for running LIFE_FINAL.forth with Life_Display_Squares_Sohum.f grap
 Drag LIFE_FINAL into SwiftForth. The grid of life will be of size 100 x 100. To change this go to line 86 in LIFE_FINAL.forth and change 100 z ! to a different number.
 You will have to re-import ( drag in ) LIFE_FINAL to update all words and variables that are calculated off of this value. 
 
+Then you can import a structure into life_array_2 using one of the words from the import_structure routine. It is best to out these structures in the middle of the grid at 
+[x,y] of [50,50] or [48,48] for example. 
+
+Then drag in Life_Display_Squares_Sohum.f file and type ' go ' into the console and hit enter to see the simulation graphically displayed by purple squares on a dark grey grid.
+Fullscreen the display window when it opens up to see the patterns evolving.
+
+
+
