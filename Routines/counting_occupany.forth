@@ -4,7 +4,7 @@
 
 
 create neighbour_occupancy_array 36 allocate drop drop    { creates an array to store the ocupancy of each number from 0 to 8. Each occupancy number is stored }
-                                            { in 4 bytes of memory }    
+                                          		  { in 4 bytes of memory }    
 			  
 : show_neighbour_occupancy_array cr 36 0 do neighbour_occupancy_array i + c@ . loop ;      { shows neighbour_occupancy_array } 
 
