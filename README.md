@@ -16,9 +16,4 @@ All words that have been written have been by me. The general structure of them 
 
 Forth_words_v7 has significant changes. Instead of using n to represent an n by n dimension size grid, the letter z is used as there were some issues with n not being unique. Additionally all arrays are now stored as variables not constants and z is not a variable too. All necessary words were slightly adjusted to now work for variables. In most cases all this involved was adding the '@' symbol where neccessary. 
 
-As of right now you can see the code working.
-Open swiftforth
-drag and drop in forth_words_v9 console.
-Type in 
-
 Read the INSTRUCTIONS.TXT file for instructions on how to run life using SwiftForth
