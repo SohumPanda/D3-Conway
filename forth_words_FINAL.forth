@@ -452,7 +452,7 @@ z @ make_array drop Life_Array_1 !
 	
 	
 : update_neighbours                                      { updates entire neighbours array in one go with the number of alive         }
-	toprow_neighbours                                { of every element in life_array_1                                           }
+	toprow_neighbours                                { neighbours of every element in life_array_1                                }
 	bottomrow_neighbours 
 	middle_neighbours ;
 
