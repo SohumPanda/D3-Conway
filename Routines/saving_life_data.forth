@@ -41,7 +41,7 @@ variable measurements_file_id  { creates a variable called test_file_id to store
     no_Died @ (.) measurements_file_id @ write-file drop                    { add cells that died since prev gen  }
     s" , " measurements_file_id @ write-file drop                           { adds comma and space                }
     
-	static @ (.) measurements_file_id @ write-file drop                     { add if current gen same as prev gen }	
+	static @ (.) measurements_file_id @ write-file drop                 { add if current gen same as prev gen }	
     s" , " measurements_file_id @ write-file drop                           { adds comma and space                }
     2dynamic @ (.) measurements_file_id @ write-line drop                   { add if current gen same as gen -2   }   
  
