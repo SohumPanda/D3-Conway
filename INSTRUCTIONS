@@ -11,5 +11,6 @@ Fullscreen the display window when it opens up to see the patterns evolving.
 
 When we were running life, line 768 in LIFE_FINAL was uncommented and we created a csv file to save our measurements from each run of life. 
 
-
+The data saved in each column from left to right is 
+Generation Number, Alive Cells in Generation, Number of Cells Born, Number of Cells Died, Static Equilibrium Check, Dynamic Equilibrium Period 2 Check 
 
