@@ -9,7 +9,7 @@ Then you can import a structure into life_array_2 using one of the words from th
 Then drag in Life_Display_Squares_Sohum.f file and type ' go ' into the console and hit enter to see the simulation graphically displayed by purple squares on a dark grey grid.
 Fullscreen the display window when it opens up to see the patterns evolving.
 
-When we were running life, line 763 was uncommented and we created a csv file to save our measurements from each run of life. 
+When we were running life, line 774 in LIFE_FINAL was uncommented and we created a csv file to save our measurements from each run of life. 
 
 
 
