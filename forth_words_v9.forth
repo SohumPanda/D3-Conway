@@ -29,20 +29,20 @@ REQUIRES RND                                         { imports rnd package autom
 
 
 
-: odd_even cr dup 2 mod 0= if                        { this uses IF THEN ELSE structure to check if the top of stack is odd or   } 
+: odd_even cr dup 2 mod 0= if                            { this uses IF THEN ELSE structure to check if the top of stack is odd or   } 
 	dup ." The number " . ." is even "               { even. The dup after if and else means the number is not taken off the top }
 	else                                             { of the stack                                                              }
 	dup ." The number " . ." is odd " 
 	then cr ;                                    
 
 
-: 5multiple cr dup 5 mod 0= if                       { checks if top number of stack is a multiple of 5                          }
+: 5multiple cr dup 5 mod 0= if                           { checks if top number of stack is a multiple of 5                          }
 	dup ." The number " . ." is a multiple of 5 " 
 	else 
 	dup ." The number " . ." isn't a multiple of 5 " 
 	then cr ;                                         
 
-: test_case cr                                       { Prints true if top of stack is 2 5 or 7                                   } 
+: test_case cr                                           { Prints true if top of stack is 2 5 or 7                                   } 
  case                                                  
  2 of true endof
  5 of true endof
@@ -60,9 +60,9 @@ REQUIRES RND                                         { imports rnd package autom
  
  
  
-: ASCII                                              {  Print the ASCII characters in blocks of 10.                              }
+: ASCII                                                  {  Print the ASCII characters in blocks of 10.                              }
 	cr 128 0 do i                                    { 128 0 do i emit loops from 0 to 127. in between you have if then to check } 
-		 10 mod 0= if cr                             { if i is a multiple of 10                                                  }
+		 10 mod 0= if cr                         { if i is a multiple of 10                                                  }
 			then i emit 
 	loop ;
 
@@ -88,9 +88,9 @@ variable z                                           { creates a variable z     
 
 
 : make_array dup square dup                          { In console to use this word type z @ make_array ( where z is a number for } 
-	allocate drop dup rot 0 fill swap ;              { a z x z array. Needs the word square to be defined to work.               }
+	allocate drop dup rot 0 fill swap ;          { a z x z array. Needs the word square to be defined to work.               }
                                                      { Will leave the mem address, z on top of the stack to use again.           }
-													 { z --------- mem, z                                                        }
+						     { z --------- mem, z                                                        }
 
 
 
@@ -101,7 +101,7 @@ variable z                                           { creates a variable z     
 : array_! 1- swap 1- 3 pick * + 3 pick swap + c! ;   { mem address, z, number to put in array, x (row number), y (column number) }
                                                      { need yo be on stack to use. This word puts a number in element [x,y] of   }
                                                      { an array at the mem address.                                              }
-													 { mem, z, no. to put in element, x, y ----- mem, z                          }
+						     { mem, z, no. to put in element, x, y ----- mem, z                          }
                                                   
 
 
@@ -124,7 +124,7 @@ variable z                                           { creates a variable z     
 	
 	
 
-: linear_array dup square 0 do                       { Needs square to be defined to work.                                       }
+: linear_array dup square 0 do                           { Needs square to be defined to work.                                       }
 	i dup 3 pick swap + c!                           { Fills z x z array with numbers from 0 to n^2 -1 from top left to bottom   }
 	loop cr ;                                        { right.                                                                    }
 	                                                 { mem, z -------- mem, z                                                    }
@@ -145,9 +145,9 @@ z @ make_array drop neighbours !
 
 
  
-: random_array_fill dup square 0 do                  { needs square to be defined                                                }  
+: random_array_fill dup square 0 do                      { needs square to be defined                                                }  
 	i 9 rnd swap 3 pick swap + c! loop cr ;          { Fills z x z array with random numbers from 0 to 8                         }
-                                                     { mem, z -------- mem, z                                                    }
+                                                         { mem, z -------- mem, z                                                    }
 
 
 
@@ -167,17 +167,17 @@ do neighbour_occupancy_array i + c@ . loop ;
 
 reset_neighbour_occupancy_array                      { Must use reset_neighbour_occupancy_array word to set all elements in      } 
                                                      { neighbour_occupancy_array to 0 . To use this word must have the array     }
-													 { ' neighbours ' created before                                             }
+					             { ' neighbours ' created before                                             }
 
 
 
 
 
 
-: count_neighbour_array_occupancy z @ square 0 do                                        { counts number of cells with 0,1,2 - 8 }
-	neighbours @ i + c@                                                                  { neighbours, from out the neighours    }
+: count_neighbour_array_occupancy z @ square 0 do                                                { counts number of cells with 0,1,2 - 8 }
+	neighbours @ i + c@                                                                      { neighbours, from out the neighours    }
 		case                                                                             { array and stores the amount in the    }    
-	 0 of neighbour_occupancy_array 0 + @ 1+ neighbour_occupancy_array 0 + ! endof       { neighbour_occupancy_array array       }
+	 0 of neighbour_occupancy_array 0 + @ 1+ neighbour_occupancy_array 0 + ! endof           { neighbour_occupancy_array array       }
 	 1 of neighbour_occupancy_array 4 + @ 1+ neighbour_occupancy_array 4 + ! endof
 	 2 of neighbour_occupancy_array 8 + @ 1+ neighbour_occupancy_array 8 + ! endof
 	 3 of neighbour_occupancy_array 12 + @ 1+ neighbour_occupancy_array 12 + ! endof
@@ -192,7 +192,7 @@ reset_neighbour_occupancy_array                      { Must use reset_neighbour_
 	 
 
 
-: occupancy_of_neighbours cr                                             { must run count_neigbour_array_occupancy before this   } 
+: occupancy_of_neighbours cr                                                 { must run count_neigbour_array_occupancy before this   } 
 	." Number of 0's is " neighbour_occupancy_array 0 + @ . cr           { and any of the print occupancies. This word prints    }  
 	." Number of 1's is " neighbour_occupancy_array 4 + @ . cr           { number of "" is "" in a nice readable format          }
 	." Number of 2's is " neighbour_occupancy_array 8 + @ . cr           { eg in a 10 x 10 array there may be 15 cells with 0    }
@@ -207,7 +207,7 @@ reset_neighbour_occupancy_array                      { Must use reset_neighbour_
 
 
 
-: print_neighbour_occupancies cr 33 0 do             { This word just prints the actual amount of a number there is from 0 to 8  } 
+: print_neighbour_occupancies cr 33 0 do                 { This word just prints the actual amount of a number there is from 0 to 8  } 
 	neighbour_occupancy_array i + @ . cr 4 +loop ;   { to the console, without the string                                        }
 
 
@@ -250,7 +250,7 @@ reset_neighbour_occupancy_array                      { Must use reset_neighbour_
 
 
 
-  : random_array_fill_0or1 dup square 0 do           { Fills an array with random values from 0 to 1. Needs square defined       }
+  : random_array_fill_0or1 dup square 0 do               { Fills an array with random values from 0 to 1. Needs square defined       }
 	i 2 rnd swap 3 pick swap + c! loop cr ;          { mem, z -------- mem, z                                                    }
 
 
@@ -259,7 +259,7 @@ reset_neighbour_occupancy_array                      { Must use reset_neighbour_
 
  
 
-: conways_rules  case                                { this word takes the number of neighbours off the stack and will return     }       
+: conways_rules  case                                    { this word takes the number of neighbours off the stack and will return     }       
 	0 of 0 endof                                     { 0,1,2 on the stack in its place. 3 neighbours means the cell will be alive }
 	1 of 0 endof                                     { always. 2 neighbours means the state of the cell is unchanged  always      } 
 	2 of 2 endof                                     { any other val of neighbours means cell will die                            }
@@ -274,10 +274,10 @@ reset_neighbour_occupancy_array                      { Must use reset_neighbour_
 
 
 
-: apply_conway_rule conways_rules                    { takes 0, or 1 ( representing if cell dead or alive), number of neighbours  } 
+: apply_conway_rule conways_rules                        { takes 0, or 1 ( representing if cell dead or alive), number of neighbours  } 
 	case                                             { and returns on the stack the value 0 or 1 of if the cell is dead or alive  }
-		0 of 0 endof                                 { in the next generation. Needs the word conways_rules defined               }
-		1 of 1 endof                                 { state of cell (0 or 1), neighbours --- state of cell in next gen (0 or 1 ) }
+		0 of 0 endof                             { in the next generation. Needs the word conways_rules defined               }
+		1 of 1 endof                             { state of cell (0 or 1), neighbours --- state of cell in next gen (0 or 1 ) }
 		2 of dup endof 
 	endcase nip ; 
 	
@@ -310,8 +310,8 @@ z @ make_array drop Life_Array_1 !
 
 
 
-: toprow cr z @ 0 do i z @ /                                            { Word to loop over top row of life_array_1 and identify  }
-	0= if i                                                             { the corner elements. Prints no. stored in each element  } 
+: toprow cr z @ 0 do i z @ /                                                        { Word to loop over top row of life_array_1 and identify  }
+	0= if i                                                                     { the corner elements. Prints no. stored in each element  } 
 			case                                                        { and if its in the top left or right corner or otherwise }
 			0 of Life_Array_1 @ i + c@ . ." in top left " cr endof      { prints that it is in the top row                        }
 			z-1 @ of Life_Array_1 @ i + c@ . ." in top right " cr endof 
@@ -324,8 +324,8 @@ z @ make_array drop Life_Array_1 !
 
 
 
-: bottomrow cr z @ square z(z-1) do i z @ /                                   { Word to loop over the botto row of life_array_1.  } 
-	z-1 @ = if i                                                              { Prints no. stored in each element and if its in   }                            
+: bottomrow cr z @ square z(z-1) do i z @ /                                               { Word to loop over the botto row of life_array_1.  } 
+	z-1 @ = if i                                                                      { Prints no. stored in each element and if its in   }                            
 			case                                                              { the bottom left or right corner or otherwise in   }
 			z(z-1) @ of Life_Array_1 @ i + c@ . ." in bottom left " cr endof  { bottom row                                        }
 			z^2-1 @ of Life_Array_1 @ i + c@ . ." in bottom right " cr endof 
@@ -338,8 +338,8 @@ z @ make_array drop Life_Array_1 !
 
 
 
-: middle cr z(z-1) @ z @ do i z @ mod dup                                                       { Word to loop from second to     }
-	z @ <= if                                                                                   { end of penultimate row to       }
+: middle cr z(z-1) @ z @ do i z @ mod dup                                                                   { Word to loop from second to     }
+	z @ <= if                                                                                           { end of penultimate row to       }
 			case                                                                                { identify if an element is in    }
 			0 of Life_Array_1 @ i + c@ . ." in left edge (not corners though) " cr endof        { the left or right edge or       }
 			z-1 @ of Life_Array_1 @ i + c@ . ." in right edge (not corners though) " cr endof   { within the edges of             }
@@ -359,8 +359,8 @@ z @ make_array drop Life_Array_1 !
 
  
 
- : toprow_neighbours z @ 0 do i z @ /                { combines toprow with if then and case endcase to calculate the number of   }
-	0= if i                                          { neighbours for a cell in the top row of life_array_1 and put that          }
+ : toprow_neighbours z @ 0 do i z @ /                            { combines toprow with if then and case endcase to calculate the number of   }
+	0= if i                                                  { neighbours for a cell in the top row of life_array_1 and put that          }
 			case                                     { number into the neighbours array                                           }
 			0 of Life_Array_1 @ i 1+ + c@ 
 				 Life_Array_1 @ i z @ + + c@ 
@@ -370,7 +370,7 @@ z @ make_array drop Life_Array_1 !
 			z-1 @ of Life_Array_1 @ i 1- + c@
                    Life_Array_1 @ i z @ + + c@ 
 				   Life_Array_1 @ i z @ + 1- + c@ + + 
-		           neighbours @ i + c! endof         { puts in amount of neighbours for top right                                 } 
+		           neighbours @ i + c! endof                 { puts in amount of neighbours for top right                                 } 
 			
 			Life_Array_1 @ i 1- + c@
             Life_Array_1 @ i 1+ + c@
@@ -451,7 +451,7 @@ z @ make_array drop Life_Array_1 !
 	
 	
 	
-: update_neighbours                                  { updates entire neighbours array in one go with the number of alive         }
+: update_neighbours                                      { updates entire neighbours array in one go with the number of alive         }
 	toprow_neighbours                                { of every element in life_array_1                                           }
 	bottomrow_neighbours 
 	middle_neighbours ;
@@ -468,7 +468,7 @@ z @ make_array drop Life_Array_2 !                   { the state of the entire n
 
  
 
-: next_gen z @ square 0 do                           { Word to apply conways rules to life_array_1 and puts the next generation   }
+: next_gen z @ square 0 do                               { Word to apply conways rules to life_array_1 and puts the next generation   }
 	Life_Array_1 @ i + c@                            { into life_array_2                                                          }
 	neighbours @ i + c@ 
 	apply_conway_rule 
@@ -546,7 +546,7 @@ variable alive_2                                     { variable to store no aliv
 
 
 
-: count_alive_1 0 z @ square 0 do                    { Word to count no alive cells in Life_Array_1 and store that number in      } 
+: count_alive_1 0 z @ square 0 do                        { Word to count no alive cells in Life_Array_1 and store that number in      } 
 	Life_Array_1 @ i + c@                            { alive_1                                                                    }
 		case 
 		1 of 1+  endof
@@ -558,20 +558,13 @@ variable alive_2                                     { variable to store no aliv
 	 
 	 
 : count_alive_2 0 z @ square 0 do                    { Word to count no alive cells in Life_Array_1 and store that number in      }
-	Life_Array_2 @ i + c@                            { alive_2                                                                    }
+	Life_Array_2 @ i + c@                        { alive_2                                                                    }
 		case 
 		1 of 1+  endof
 		endcase
 	loop  alive_2 ! ;
 
-                                                     { to print the number of alive cells in the Life_Array_1 or Life_Array_2     }
-                                                     { first run :count_alive_1 or 2 and then                                     }
-                                                     { alive_1 or 2 0 + @ } { ----------- will print no alive cells to stack      } 
-													 { We can use this to check the if the number of alive cells changes from one }
-                                                     { gen to another s a form of checking if steady state is reached. To do this }
-													 { alive_1 and alive_2 mmust be reset back to zero after each loop            } 
-
-
+                                                
 
 
 
@@ -582,7 +575,7 @@ z @ 2 * make_array drop Life_Array32 !
 
  
 
-: 8to32 z @ square 0 do                              { Word to convert life_array_1 into a 32 bit array from an 8 bit array       }                     
+: 8to32 z @ square 0 do                                  { Word to convert life_array_1 into a 32 bit array from an 8 bit array       }                     
 	life_array_1 @ i + c@                            { which is then stored at the variable life_array32                          }
 	Life_Array32 @ i cells + ! 
 	loop ; 
@@ -591,7 +584,7 @@ z @ 2 * make_array drop Life_Array32 !
 	
 	
  	
-: show_array32 dup                                   { Word to show a 32 bit array in the console                                 }
+: show_array32 dup                                           { Word to show a 32 bit array in the console                                 }
 	square 0 	                                     { mem, z ------- mem, z                                                      }
 		do 
 			dup i swap mod 0= if cr cr 
@@ -635,7 +628,7 @@ variable no_Died                                  { Creates a variable to store 
 
 
 
-: count_born 0 z @ square 0 do                    { Word to count no cells born                                                } 
+: count_born 0 z @ square 0 do                        { Word to count no cells born                                                } 
 	diff_array @ i + c@                           { the Word calculate_diff_array must be created before this word can run     } 
 		case 
 		1 of 1+  endof
@@ -683,17 +676,17 @@ z @ make_array drop life_array_3 !               { Makes life_array_3 fills it w
 { Rturns a False (0 ) if arrays are different                                  }   
   
    
-: compare_arrays   												{ compares two arrays 				}
-	-1															{ place a logical true on stack		}
-	z @ square 0 do												{ loop from 0 to z^2				}
-		2 pick i + c@ 2 pick i + c@ 						    { get the values for each array at 	}
-		= not if												{ index i, then if they arent equal:}
-			drop 0 												{ add a logical false				}
-		then													{ else do nothing					}
+: compare_arrays   									{ compares two arrays 				}
+	-1										{ place a logical true on stack		        }
+	z @ square 0 do									{ loop from 0 to z^2				}
+		2 pick i + c@ 2 pick i + c@ 			                        { get the values for each array at 	        }
+		= not if							        { index i, then if they arent equal             }
+			drop 0 							        { add a logical false				}
+		then									{ else do nothing	       		        }
 	loop
-	nip nip														{ remove the addresses, only True / }
-	;															{ False left on stack 				}
-                                                                { mem1, mem2 ------- True/False     }
+	nip nip										{ remove the addresses, only True / False       }
+	;					                 			{ left on stack 				}
+                                                                                        { mem1, mem2 ------- True/False                 }
 																
 
 { -----------------------End of by Tanjim, adapted by me------------------------ }
@@ -726,12 +719,12 @@ variable static                              { creates a variable called static 
 
 variable 2dynamic                            { creates a variable called 2dynamic to hold -1 or 0 if gen x   }
                                              { is the same as gen x-2 and we have a dynamic equilibrium with }
-											 { structures that have a max period of oscillation of 2         }
+					     { structures that have a max period of oscillation of 2         }
 											 
 : 2dynamic_check                             { checks if gen x (stored in life_array_2) is same as gen x-2   }   						 
  life_array_2 @ life_array_3 @               { (stored in life_array_3) and stores true or false value in    }
  compare_arrays                              { 2dynamic variable. REMEMBER if gen x same as gen x-2 then     } 
- 2dynamic !  								 { dynamic equilibrium was actually achieved at gen x-2          }			 
+ 2dynamic !  				     { dynamic equilibrium was actually achieved at gen x-2          }			 
 ;
 
 
@@ -749,14 +742,15 @@ variable measurements_file_id  { creates a variable called test_file_id to store
 
 { run the word make_measurements_file in the console to create measurements_file.csv at the location } 
 { Import all words into console and then import starting structure into life_array_2.                }
-{ make_measurements_file                                                                             }
-{ save_measurements                                                                                  }
 
 
 
-make_measurements_file        { this creates the file at the location specified. Must close SwiftForth to edit }
-                              { the csv file. Rename the measurements after its created or next time you run   }                                                                  
-                              { life it will get overwritten                                                   }
+{ uncomment make_measurents_file (line 751) below if you want to save the statistics from a run of life. Whoever uses this file needs to }
+{ change the save location of the measurements file by changing the path in line 737                                                     } 
+
+{ make_measurements_file }    { this creates the file at the location specified. Must close SwiftForth to edit }
+                              { the csv file. Rename the measurements file after its created or next time you  }                                                                  
+                              { run life it will get overwritten                                               }
 							  
 							  
 							  
@@ -783,7 +777,7 @@ make_measurements_file        { this creates the file at the location specified.
     no_Died @ (.) measurements_file_id @ write-file drop                    { add cells that died since prev gen  }
     s" , " measurements_file_id @ write-file drop                           { adds comma and space                }
     
-	static @ (.) measurements_file_id @ write-file drop                     { add if current gen same as prev gen }	
+	static @ (.) measurements_file_id @ write-file drop                 { add if current gen same as prev gen }	
     s" , " measurements_file_id @ write-file drop                           { adds comma and space                }
     2dynamic @ (.) measurements_file_id @ write-line drop                   { add if current gen same as gen -2   }   
  
@@ -809,7 +803,7 @@ make_measurements_file        { this creates the file at the location specified.
 	life_array_2 @ life_array_1 @ z @ square move    { moves gen in life_array_2 (x) to life_array_1                              }   
 	8to32                                            { converts life_array_1 from 8 to 32 bit, stores in life_array32             }                            
 	update_neighbours                                { Update_neighbours updates neighbour array                                  } 
-	next_gen 	                                     { Then use next gen to create the next generation (x+1) in life_array_2      }   
+	next_gen 	                                 { Then use next gen to create the next generation (x+1) in life_array_2      }   
 ;                                                     
                                           
 
@@ -862,7 +856,7 @@ variable glider_y
 
 : import_glider
   glider_y !
-  glider_x !														        { saves x,y into the variables   }
+  glider_x !									        { saves x,y into the variables   }
   life_array_2 @ z @ 1 glider_x @ glider_y @ 2 + array_! drop drop			{ changes values in life_array_1 }
   life_array_2 @ z @ 1 glider_x @ 1 + glider_y @ array_! drop drop			{ so a glider appears at [x,y]   }
   life_array_2 @ z @ 1 glider_x @ 1 + glider_y @ 2 + array_! drop drop 		
@@ -989,7 +983,7 @@ variable glider_y
 
 
 
-                                      { -------- 28/10/20 -------- }
+                       
 									  
 									  
 
