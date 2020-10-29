@@ -83,7 +83,7 @@ REQUIRES RND                                         { imports rnd package autom
  
 
 variable z                                           { creates a variable z                                                      }
-10 z !                                               { stores dimension of array in variable z. when we say z from now, we mean  }
+100 z !                                              { stores dimension of array in variable z. when we say z from now, we mean  }
                                                      { the number stored at variable z                                           }
 
 
@@ -686,7 +686,7 @@ z @ make_array drop life_array_3 !               { Makes life_array_3 fills it w
 : compare_arrays   												{ compares two arrays 				}
 	-1															{ place a logical true on stack		}
 	z @ square 0 do												{ loop from 0 to z^2				}
-		2 pick i + @ 2 pick i + @ 								{ get the values for each array at 	}
+		2 pick i + c@ 2 pick i + c@ 						    { get the values for each array at 	}
 		= not if												{ index i, then if they arent equal:}
 			drop 0 												{ add a logical false				}
 		then													{ else do nothing					}
@@ -754,8 +754,14 @@ variable measurements_file_id  { creates a variable called test_file_id to store
 
 
 
-
-
+make_measurements_file        { this creates the file at the location specified. Must close SwiftForth to edit }
+                              { the csv file. Rename the measurements after its created or next time you run   }                                                                  
+                              { life it will get overwritten                                                   }
+							  
+							  
+							  
+							 
+							 
 : save_measurements                                                    { saves measurements to a csv file     }
   increment_generations                                                { run the measurement words            }
   count_alive_2 
