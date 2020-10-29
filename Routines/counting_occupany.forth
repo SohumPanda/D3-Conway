@@ -1,3 +1,7 @@
+{Written by Sohum Panda }
+{ 19/10/20 }
+
+
 
 create neighbour_occupancy_array 36 allocate drop drop    { creates an array to store the ocupancy of each number from 0 to 8. Each occupancy number is stored }
                                             { in 4 bytes of memory }    
@@ -83,10 +87,5 @@ reset_neighbour_occupancy_array
 	dup square neighbour_occupancy_array 24 + @ 100 * swap / . cr  
 	dup square neighbour_occupancy_array 28 + @ 100 * swap / . cr  
 	dup square neighbour_occupancy_array 32 + @ 100 * swap / . cr ;  
-	  
-
-
-
-	
 	  
 	  

@@ -1,3 +1,8 @@
+{Written by Sohum Panda }
+{ 20/10/20 }
+
+
+
 { case-endcase structure to take a value from 0-8 and apply life's rules to determine if a cell with that number of neighbours }
 { would be alive or dead in next generation }
 { this will take n off the stack }  

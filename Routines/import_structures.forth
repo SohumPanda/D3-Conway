@@ -59,9 +59,9 @@ variable glider_y
 
 
 
-: Rpent_grandparent                                                  { imports an r pentomino methusela seed }
- 3 2 pick 2 pick 1+ import_line                                      { with the top left of the pattern at   }
- 1 2 pick 1+ 2 pick import_line                                      { x,y                                   }
+: Rpent_grandparent                                                  { imports an r pentomino grandparent    }
+ 3 2 pick 2 pick 1+ import_line                                      { methusela seed with the top left of   }
+ 1 2 pick 1+ 2 pick import_line                                      { the pattern at x,y                    }
  1 2 pick 2 + 2 pick import_line drop drop ;                         { x, y -------                          } 
  
  
