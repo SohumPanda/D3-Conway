@@ -250,15 +250,21 @@ reset_neighbour_occupancy_array                      { Must use reset_neighbour_
 
 
 
-  : random_array_fill_0or1 dup square 0 do               { Fills an array with random values from 0 to 1. Needs square defined       }
-	i 2 rnd swap 3 pick swap + c! loop cr ;          { mem, z -------- mem, z                                                    }
+variable percentage                                  { creates a variable for the percentage of cells you want to be randomly    }
+                                                     { filled with alive cells                                                   }
 
+40 percentage !                                      { stores the percent random fill you want in the variable percentage        }
+
+
+  : random_array_fill_0or1 dup square 0 do           { Fills an array with random values from 0 to 1. Needs square defined       }
+	i 
+	100 rnd 1 + percentage @ <= if 1 else 0 then
+	swap 3 pick swap + c! loop cr ;                  { mem, z -------- mem, z                                                    }
 
 
 
 
  
-
 : conways_rules  case                                    { this word takes the number of neighbours off the stack and will return     }       
 	0 of 0 endof                                     { 0,1,2 on the stack in its place. 3 neighbours means the cell will be alive }
 	1 of 0 endof                                     { always. 2 neighbours means the state of the cell is unchanged  always      } 
