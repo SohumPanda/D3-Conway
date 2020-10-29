@@ -18,7 +18,7 @@ Type in
 go 
 
 into the console and hit enter.
-You should see a purple glider form in the top of a 20 x 20 life grid and move
+You should see a purple glider form in the top of a 100 x 100 life grid and move
 
 
 
