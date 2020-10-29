@@ -1,4 +1,4 @@
-{Written by Sohum Panda }
+{ Written by Sohum Panda }
 { 20/10/20 }
 
 
@@ -9,8 +9,8 @@
 
 { this word takes n ( the number of neighbours ) off the stack and will return 0,1,2 on the stack in its place } 
 
-: conways_rules  case      { here 0 means the cell dies }		
-	0 of 0 endof                    { means the cell will be alive }
+: conways_rules  case                   { here 0 means the cell dies }		
+	0 of 0 endof                    { 1 means the cell will be alive }
 	1 of 0 endof                    { 2 means the state of the cell is unchanged } 
 	2 of 2 endof
 	3 of 1 endof
