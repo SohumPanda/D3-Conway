@@ -6,7 +6,8 @@ Drag LIFE_FINAL into SwiftForth. The grid of life will be of size 200 x 200. To 
 Then you can import a structure into life_array_2 using one of the words from the import_structure routine. It is best to put these structures in the middle of the grid at 
 [x,y] of [100,100] for a 200x200 grid for example, so they have the space to evolve fully. 
 
-The Life Array can also be filled with random 1's and 0's and with a certain percent fillage. 
+The Life Array can also be filled with random 1's and 0's and with a certain percent fillage. See lines 252-262 in LIFE-FINAL for instructions. 
+" life_array_2 @ z @ random_array_fill_0or1 " 
 
 Then drag in Life_Display_Squares_Sohum.f file and type ' go ' into the console and hit enter to see the simulation graphically displayed by purple squares on a dark grey grid.
 Fullscreen the display window when it opens up to see the patterns evolving.
@@ -16,3 +17,4 @@ When we were running life, line 768 in LIFE_FINAL was uncommented and we created
 The data saved in each column from left to right is 
 Generation Number, Alive Cells in Generation, Number of Cells Born, Number of Cells Died, Static Equilibrium Check, Dynamic Equilibrium Period 2 Check 
 
+The word reset_life can be used to reset all arrays to be zero 
