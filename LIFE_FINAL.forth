@@ -766,7 +766,7 @@ variable measurements_file_id  { creates a variable called test_file_id to store
 
 
 
-make_measurements_file        { this creates the file at the location specified. Must close SwiftForth to edit }
+{ make_measurements_file }    { this creates the file at the location specified. Must close SwiftForth to edit }
                               { the csv file. Rename the measurements after its created or next time you run   }                                                                  
                               { life it will get overwritten                                                   }
 							  
