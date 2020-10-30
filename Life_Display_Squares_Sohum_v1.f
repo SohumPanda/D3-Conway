@@ -199,10 +199,10 @@ REQUIRES RND
 { ----------------------------- Life Stuff Goes Here ------------------------ }
 
 
-400   Constant Update_Timer    { Sets update rate of windows - modest delay   }
+100   Constant Update_Timer    { Sets update rate of windows - modest delay   }
                                { Smaller = faster refresh                     }
 
-20 Constant Rect_Size           { Length of edges of rectangle used to display }
+5 Constant Rect_Size           { Length of edges of rectangle used to display }
                                { life, must be >= 3 or blank display all balck}
 
 
@@ -216,13 +216,9 @@ variable world_size        { Total number of world elements (World_x_size * Worl
 
 variable Life_Counter      { Number of live cells to output to screen }
 
-{ variable Life_Array }        { Holds starting address of ext-memory for array of life              } 
-
 variable Rect_Points       { Holds starting address of ext-memory for points defining rectangles } 
 
 world_y_size world_x_size * world_size !
-
-{ world_size @ 1 + cells Allocate drop Life_Array ! }    { Allocate memory for Array of life data }
 
 world_size @ 4 * 1 +  cells Allocate drop Rect_Points ! { Allocate memory for Array of rectangle data - size <n> x 4 + 1 }
 
