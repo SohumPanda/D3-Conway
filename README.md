@@ -19,3 +19,5 @@ Forth_words_v7 has significant changes. Instead of using n to represent an n by 
 Read the INSTRUCTIONS.TXT file for instructions on how to run life using SwiftForth
 
 Some Data I have begun collecting from Life is Saved in the Data folder in the repository. One folder is for the data from methuselas to check our code was working. The other is data from increasing sized horizontal cells of alive cells being initialised as the beginning seed. 
+
+In the Data folder, in the Horizontal lines folder, is a python script for some analysis of the data collected fom the runs of life with different length horizontal lifes as the seed generation (gen 1 )
