@@ -83,7 +83,7 @@ REQUIRES RND                                         { imports rnd package autom
  
 
 variable z                                           { creates a variable z                                                      }
-100 z !                                              { stores dimension of array in variable z. when we say z from now, we mean  }
+200 z !                                              { stores dimension of array in variable z. when we say z from now, we mean  }
                                                      { the number stored at variable z                                           }
 
 
