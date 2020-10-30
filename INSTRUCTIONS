@@ -12,7 +12,7 @@ The Life Array can also be filled with random 1's and 0's and with a certain per
 Then drag in Life_Display_Squares_Sohum.f file and type ' go ' into the console and hit enter to see the simulation graphically displayed by purple squares on a dark grey grid.
 Fullscreen the display window when it opens up to see the patterns evolving.
 
-When we were running life, line 769 in LIFE_FINAL was uncommented and we created a csv file to save our measurements from each run of life. 
+When we were running life, line 769 in LIFE_FINAL { make_measurements_file } was uncommented and we created a csv file to save our measurements from each run of life. 
 
 The data saved in each column from left to right is 
 Generation Number, Alive Cells in Generation, Number of Cells Born, Number of Cells Died, Static Equilibrium Check, Dynamic Equilibrium Period 2 Check 
