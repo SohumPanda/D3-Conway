@@ -18,5 +18,4 @@ Forth_words_v7 has significant changes. Instead of using n to represent an n by 
 
 Read the INSTRUCTIONS.TXT file for instructions on how to run life using SwiftForth
 
-Data from Life is Saved in the Data folder. One folder is for the data from methuselas to check our code was working. The other is data from increasing sized 
-horizontal cells of alive cells being initialised as the beginning seed. 
+Some Data I have begun collecting from Life is Saved in the Data folder in the repository. One folder is for the data from methuselas to check our code was working. The other is data from increasing sized horizontal cells of alive cells being initialised as the beginning seed. 
