@@ -1,4 +1,4 @@
-Instructions for running LIFE_FINAL.forth with Life_Display_Squares_Sohum.f graphical display file in SwiftForth 
+Instructions for running LIFE_FINAL.forth with Life_Display_Squares_Sohum_v1.f graphical display file in SwiftForth 
 
 Drag LIFE_FINAL into SwiftForth. The grid of life will be of size 200 x 200. To change this type the new dimension size and then the word new_dimension and hit enter.
 " 100 new_dimension " will update all arrays to 100x100 with 0's . 
