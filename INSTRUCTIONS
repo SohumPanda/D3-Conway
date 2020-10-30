@@ -9,7 +9,7 @@ Then you can import a structure into life_array_2 using one of the words from th
 The Life Array can also be filled with random 1's and 0's and with a certain percent fillage. See lines 252-262 in LIFE-FINAL for instructions. 
 " life_array_2 @ z @ random_array_fill_0or1 " 
 
-Then drag in Life_Display_Squares_Sohum.f file and type ' go ' into the console and hit enter to see the simulation graphically displayed by purple squares on a dark grey grid.
+Then drag in Life_Display_Squares_Sohum_v1.f file and type ' go ' into the console and hit enter to see the simulation graphically displayed by purple squares on a dark grey grid.
 Fullscreen the display window when it opens up to see the patterns evolving.
 
 When we were running life, line 769 in LIFE_FINAL { make_measurements_file } was uncommented and we created a csv file to save our measurements from each run of life. 
